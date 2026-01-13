@@ -69,7 +69,7 @@ Available in **Tools → Noir** menu:
 
 ## Requirements
 
-- **JetBrains IDE** version 2023.2 or later (IntelliJ IDEA, CLion, RustRover, WebStorm, etc.)
+- **JetBrains IDE** version 2025.2 or later (IntelliJ IDEA, CLion, RustRover, WebStorm, etc.)
 - **[Nargo](https://noir-lang.org/docs/getting_started/installation/)** installed for LSP features
 
 ## Installation

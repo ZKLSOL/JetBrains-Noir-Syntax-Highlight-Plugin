@@ -9,7 +9,6 @@ class RestartLspAction : AnAction("Restart Noir Language Server") {
     override fun actionPerformed(e: AnActionEvent) {
         val project = e.project ?: return
 
-        @Suppress("UnstableApiUsage")
         LspServerManager.getInstance(project).stopAndRestartIfNeeded(
             NoirLspServerSupportProvider::class.java
         )

@@ -108,7 +108,7 @@ class NoirBraceMatcher : PairedBraceMatcher
 
 ### LSP Integration
 
-The plugin uses JetBrains' native LSP API (available in 2023.2+).
+The plugin uses JetBrains' native LSP API (available in 2025.2+).
 
 #### `lsp/NoirLspServerSupportProvider.kt`
 ```kotlin
@@ -127,12 +127,17 @@ class NoirLspServerSupportProvider : LspServerSupportProvider {
 #### `lsp/NoirLspServerDescriptor.kt`
 ```kotlin
 class NoirLspServerDescriptor(project: Project) : ProjectWideLspServerDescriptor(project, "Noir") {
+    override val lspCustomization: LspCustomization = object : LspCustomization() {
+        // Use default customizations - nargo lsp provides all features
+    }
+
     override fun createCommandLine(): GeneralCommandLine {
         return GeneralCommandLine(findNargoPath(), "lsp")
     }
 }
 ```
 - Configures how to start `nargo lsp`
+- Uses the new `lspCustomization` API for feature configuration
 - Implements nargo PATH auto-detection:
   1. Check project settings override
   2. Check application settings
@@ -323,8 +328,8 @@ Main plugin descriptor:
 pluginGroup = cash.turbine.noir
 pluginName = Noir
 pluginVersion = 0.1.0
-pluginSinceBuild = 232          # IntelliJ 2023.2
-platformVersion = 2023.2
+pluginSinceBuild = 252          # IntelliJ 2025.2
+platformVersion = 2025.2
 ```
 
 ### `build.gradle.kts`

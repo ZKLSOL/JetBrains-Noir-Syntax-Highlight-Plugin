@@ -6,7 +6,6 @@ import com.intellij.openapi.project.Project
 import com.intellij.openapi.vfs.VirtualFile
 import com.intellij.platform.lsp.api.ProjectWideLspServerDescriptor
 import cash.turbine.noir.settings.NoirProjectSettings
-import cash.turbine.noir.settings.NoirSettings
 import java.io.File
 
 class NoirLspServerDescriptor(project: Project) : ProjectWideLspServerDescriptor(project, "Noir") {

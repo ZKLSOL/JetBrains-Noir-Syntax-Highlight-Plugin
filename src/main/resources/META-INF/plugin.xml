@@ -1,6 +1,6 @@
 <idea-plugin>
     <id>cash.turbine.noir</id>
-    <name>Noir</name>
+    <name>Noir Language Support</name>
     <vendor url="https://github.com/ZKLSOL">ZKLSOL</vendor>
 
     <description><![CDATA[
