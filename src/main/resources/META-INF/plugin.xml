@@ -1,7 +1,7 @@
 <idea-plugin>
-    <id>com.ohaddahan.noir</id>
+    <id>cash.turbine.noir</id>
     <name>Noir</name>
-    <vendor email="ohaddahan@gmail.com" url="https://github.com/ohaddahan">ohaddahan</vendor>
+    <vendor url="https://github.com/ZKLSOL">ZKLSOL</vendor>
 
     <description><![CDATA[
     Syntax highlighting and language server support for the Noir zero-knowledge programming language.
@@ -21,69 +21,69 @@
     <extensions defaultExtensionNs="com.intellij">
         <fileType
                 name="Noir"
-                implementationClass="com.ohaddahan.noir.NoirFileType"
+                implementationClass="cash.turbine.noir.NoirFileType"
                 fieldName="INSTANCE"
                 language="Noir"
                 extensions="nr"/>
 
         <lang.syntaxHighlighterFactory
                 language="Noir"
-                implementationClass="com.ohaddahan.noir.NoirSyntaxHighlighterFactory"/>
+                implementationClass="cash.turbine.noir.NoirSyntaxHighlighterFactory"/>
 
         <lang.parserDefinition
                 language="Noir"
-                implementationClass="com.ohaddahan.noir.NoirParserDefinition"/>
+                implementationClass="cash.turbine.noir.NoirParserDefinition"/>
 
         <lang.commenter
                 language="Noir"
-                implementationClass="com.ohaddahan.noir.NoirCommenter"/>
+                implementationClass="cash.turbine.noir.NoirCommenter"/>
 
         <lang.braceMatcher
                 language="Noir"
-                implementationClass="com.ohaddahan.noir.NoirBraceMatcher"/>
+                implementationClass="cash.turbine.noir.NoirBraceMatcher"/>
 
         <applicationConfigurable
                 parentId="language"
-                instance="com.ohaddahan.noir.settings.NoirSettingsConfigurable"
-                id="com.ohaddahan.noir.settings"
+                instance="cash.turbine.noir.settings.NoirSettingsConfigurable"
+                id="cash.turbine.noir.settings"
                 displayName="Noir"/>
 
         <applicationService
-                serviceImplementation="com.ohaddahan.noir.settings.NoirSettings"/>
+                serviceImplementation="cash.turbine.noir.settings.NoirSettings"/>
 
         <projectService
-                serviceImplementation="com.ohaddahan.noir.settings.NoirProjectSettings"/>
+                serviceImplementation="cash.turbine.noir.settings.NoirProjectSettings"/>
 
         <platform.lsp.serverSupportProvider
-                implementation="com.ohaddahan.noir.lsp.NoirLspServerSupportProvider"/>
+                implementation="cash.turbine.noir.lsp.NoirLspServerSupportProvider"/>
 
         <defaultLiveTemplates file="/liveTemplates/Noir.xml"/>
         <liveTemplateContext
                 contextId="NOIR"
-                implementation="com.ohaddahan.noir.NoirTemplateContextType"/>
+                implementation="cash.turbine.noir.NoirTemplateContextType"/>
 
         <codeInsight.lineMarkerProvider
                 language="Noir"
-                implementationClass="com.ohaddahan.noir.NoirTestLineMarkerProvider"/>
+                implementationClass="cash.turbine.noir.NoirTestLineMarkerProvider"/>
 
         <virtualFileSystem
                 key="noir-std"
-                implementationClass="com.ohaddahan.noir.stdlib.NoirStdlibFileSystem"/>
+                implementationClass="cash.turbine.noir.stdlib.NoirStdlibFileSystem"/>
     </extensions>
 
     <actions>
         <group id="Noir.ToolsMenu" text="Noir" popup="true">
             <add-to-group group-id="ToolsMenu" anchor="last"/>
             <action id="Noir.RestartLsp"
-                    class="com.ohaddahan.noir.actions.RestartLspAction"
+                    class="cash.turbine.noir.actions.RestartLspAction"
                     text="Restart Language Server"
                     description="Restart the Noir language server"/>
             <action id="Noir.ExpandMacros"
-                    class="com.ohaddahan.noir.actions.ExpandMacrosAction"
+                    class="cash.turbine.noir.actions.ExpandMacrosAction"
                     text="Expand Macros"
                     description="Expand macros in current Noir file"/>
             <action id="Noir.BrowseStdlib"
-                    class="com.ohaddahan.noir.actions.BrowseStdlibAction"
+                    class="cash.turbine.noir.actions.BrowseStdlibAction"
                     text="Browse Standard Library"
                     description="Open Noir standard library source"/>
         </group>

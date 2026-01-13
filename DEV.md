@@ -48,7 +48,7 @@ object NoirFileType : LanguageFileType(NoirLanguage)
 - Provides file icon via `NoirIcons.FILE`
 - Registered in `plugin.xml`:
 ```xml
-<fileType name="Noir" implementationClass="com.ohaddahan.noir.NoirFileType"
+<fileType name="Noir" implementationClass="cash.turbine.noir.NoirFileType"
           fieldName="INSTANCE" language="Noir" extensions="nr"/>
 ```
 
@@ -300,7 +300,7 @@ object NoirIcons {
 Main plugin descriptor:
 ```xml
 <idea-plugin>
-    <id>com.ohaddahan.noir</id>
+    <id>cash.turbine.noir</id>
     <name>Noir</name>
 
     <depends>com.intellij.modules.platform</depends>
@@ -320,7 +320,7 @@ Main plugin descriptor:
 
 ### `gradle.properties`
 ```properties
-pluginGroup = com.ohaddahan.noir
+pluginGroup = cash.turbine.noir
 pluginName = Noir
 pluginVersion = 0.1.0
 pluginSinceBuild = 232          # IntelliJ 2023.2
@@ -383,7 +383,7 @@ Runs all unit tests including lexer, file type, and settings tests.
 
 ### Running Specific Tests
 ```bash
-./gradlew test --tests "com.ohaddahan.noir.NoirLexerTest"
+./gradlew test --tests "cash.turbine.noir.NoirLexerTest"
 ```
 
 ## Future Improvements

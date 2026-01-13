@@ -1,6 +1,6 @@
 # Noir JetBrains Plugin
 
-![Build](https://github.com/ohaddahan/JetBrains-Noir-Syntax-Highlight-Plugin/workflows/Build/badge.svg)
+![Build](https://github.com/ZKLSOL/JetBrains-Noir-Syntax-Highlight-Plugin/workflows/Build/badge.svg)
 
 Language support for the [Noir](https://noir-lang.org/) zero-knowledge programming language in JetBrains IDEs.
 
@@ -81,7 +81,7 @@ Available in **Tools → Noir** menu:
 4. Click **Install**
 
 ### Manual Installation
-1. Download the latest release from [GitHub Releases](https://github.com/ohaddahan/JetBrains-Noir-Syntax-Highlight-Plugin/releases)
+1. Download the latest release from [GitHub Releases](https://github.com/ZKLSOL/JetBrains-Noir-Syntax-Highlight-Plugin/releases)
 2. Go to **Settings/Preferences → Plugins → ⚙️ → Install Plugin from Disk...**
 3. Select the downloaded `.zip` file
 
@@ -140,7 +140,7 @@ You can override the nargo path per-project. Project settings take precedence ov
 
 ```
 src/main/
-├── kotlin/com/ohaddahan/noir/
+├── kotlin/cash/turbine/noir/
 │   ├── NoirLanguage.kt          # Language definition
 │   ├── NoirFileType.kt          # File type for .nr files
 │   ├── NoirFile.kt              # PSI file for Noir
@@ -175,7 +175,7 @@ src/main/
 │   ├── liveTemplates/Noir.xml   # Live templates
 │   └── icons/                   # SVG icons
 └── test/
-    └── kotlin/com/ohaddahan/noir/
+    └── kotlin/cash/turbine/noir/
         ├── NoirFileTypeTest.kt  # File type tests
         ├── NoirLexerTest.kt     # Lexer tests
         └── NoirSettingsTest.kt  # Settings tests
