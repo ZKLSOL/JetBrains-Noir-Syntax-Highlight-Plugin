@@ -1,15 +1,79 @@
-<!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin>
-    <id>com.github.ohaddahan.jetbrainsnoirsyntaxhighlightplugin</id>
-    <name>ohaddahan-Noir-Syntax-Highlight-Plugin</name>
-    <vendor>ohaddahan</vendor>
+    <id>com.ohaddahan.noir</id>
+    <name>Noir</name>
+    <vendor email="ohaddahan@gmail.com" url="https://github.com/ohaddahan">ohaddahan</vendor>
+
+    <description><![CDATA[
+    Syntax highlighting and language server support for the Noir zero-knowledge programming language.
+
+    <h3>Features</h3>
+    <ul>
+        <li>Syntax highlighting for .nr files</li>
+        <li>LSP integration with nargo lsp</li>
+        <li>Code completion, diagnostics, and go-to-definition</li>
+        <li>Live templates for common Noir constructs</li>
+        <li>Macro expansion viewer</li>
+    </ul>
+    ]]></description>
 
     <depends>com.intellij.modules.platform</depends>
 
-    <resource-bundle>messages.MyBundle</resource-bundle>
-
     <extensions defaultExtensionNs="com.intellij">
-        <toolWindow factoryClass="com.github.ohaddahan.jetbrainsnoirsyntaxhighlightplugin.toolWindow.MyToolWindowFactory" id="MyToolWindow"/>
-        <postStartupActivity implementation="com.github.ohaddahan.jetbrainsnoirsyntaxhighlightplugin.startup.MyProjectActivity" />
+        <fileType
+                name="Noir"
+                implementationClass="com.ohaddahan.noir.NoirFileType"
+                fieldName="INSTANCE"
+                language="Noir"
+                extensions="nr"/>
+
+        <lang.syntaxHighlighterFactory
+                language="Noir"
+                implementationClass="com.ohaddahan.noir.NoirSyntaxHighlighterFactory"/>
+
+        <lang.parserDefinition
+                language="Noir"
+                implementationClass="com.ohaddahan.noir.NoirParserDefinition"/>
+
+        <lang.commenter
+                language="Noir"
+                implementationClass="com.ohaddahan.noir.NoirCommenter"/>
+
+        <lang.braceMatcher
+                language="Noir"
+                implementationClass="com.ohaddahan.noir.NoirBraceMatcher"/>
+
+        <applicationConfigurable
+                parentId="language"
+                instance="com.ohaddahan.noir.settings.NoirSettingsConfigurable"
+                id="com.ohaddahan.noir.settings"
+                displayName="Noir"/>
+
+        <applicationService
+                serviceImplementation="com.ohaddahan.noir.settings.NoirSettings"/>
+
+        <projectService
+                serviceImplementation="com.ohaddahan.noir.settings.NoirProjectSettings"/>
+
+        <platform.lsp.serverSupportProvider
+                implementation="com.ohaddahan.noir.lsp.NoirLspServerSupportProvider"/>
+
+        <defaultLiveTemplates file="/liveTemplates/Noir.xml"/>
+        <liveTemplateContext
+                contextId="NOIR"
+                implementation="com.ohaddahan.noir.NoirTemplateContextType"/>
     </extensions>
+
+    <actions>
+        <group id="Noir.ToolsMenu" text="Noir" popup="true">
+            <add-to-group group-id="ToolsMenu" anchor="last"/>
+            <action id="Noir.RestartLsp"
+                    class="com.ohaddahan.noir.actions.RestartLspAction"
+                    text="Restart Language Server"
+                    description="Restart the Noir language server"/>
+            <action id="Noir.ExpandMacros"
+                    class="com.ohaddahan.noir.actions.ExpandMacrosAction"
+                    text="Expand Macros"
+                    description="Expand macros in current Noir file"/>
+        </group>
+    </actions>
 </idea-plugin>

@@ -1,52 +1,189 @@
-# JetBrains-Noir-Syntax-Highlight-Plugin
+# Noir JetBrains Plugin
 
 ![Build](https://github.com/ohaddahan/JetBrains-Noir-Syntax-Highlight-Plugin/workflows/Build/badge.svg)
 [![Version](https://img.shields.io/jetbrains/plugin/v/MARKETPLACE_ID.svg)](https://plugins.jetbrains.com/plugin/MARKETPLACE_ID)
 [![Downloads](https://img.shields.io/jetbrains/plugin/d/MARKETPLACE_ID.svg)](https://plugins.jetbrains.com/plugin/MARKETPLACE_ID)
 
-## Template ToDo list
-- [x] Create a new [IntelliJ Platform Plugin Template][template] project.
-- [ ] Get familiar with the [template documentation][template].
-- [ ] Adjust the [pluginGroup](./gradle.properties) and [pluginName](./gradle.properties), as well as the [id](./src/main/resources/META-INF/plugin.xml) and [sources package](./src/main/kotlin).
-- [ ] Adjust the plugin description in `README` (see [Tips][docs:plugin-description])
-- [ ] Review the [Legal Agreements](https://plugins.jetbrains.com/docs/marketplace/legal-agreements.html?from=IJPluginTemplate).
-- [ ] [Publish a plugin manually](https://plugins.jetbrains.com/docs/intellij/publishing-plugin.html?from=IJPluginTemplate) for the first time.
-- [ ] Set the `MARKETPLACE_ID` in the above README badges. You can obtain it once the plugin is published to JetBrains Marketplace.
-- [ ] Set the [Plugin Signing](https://plugins.jetbrains.com/docs/intellij/plugin-signing.html?from=IJPluginTemplate) related [secrets](https://github.com/JetBrains/intellij-platform-plugin-template#environment-variables).
-- [ ] Set the [Deployment Token](https://plugins.jetbrains.com/docs/marketplace/plugin-upload.html?from=IJPluginTemplate).
-- [ ] Click the <kbd>Watch</kbd> button on the top of the [IntelliJ Platform Plugin Template][template] to be notified about releases containing new features and fixes.
-- [ ] Configure the [CODECOV_TOKEN](https://docs.codecov.com/docs/quick-start) secret for automated test coverage reports on PRs
+Language support for the [Noir](https://noir-lang.org/) zero-knowledge programming language in JetBrains IDEs.
 
 <!-- Plugin description -->
-This Fancy IntelliJ Platform Plugin is going to be your implementation of the brilliant ideas that you have.
+Language support for the Noir zero-knowledge programming language.
 
-This specific section is a source for the [plugin.xml](/src/main/resources/META-INF/plugin.xml) file which will be extracted by the [Gradle](/build.gradle.kts) during the build process.
-
-To keep everything working, do not remove `<!-- ... -->` sections. 
+### Features
+- LSP integration with `nargo lsp` for full IDE intelligence
+- Code completion, diagnostics, go-to-definition, hover, and more
+- Live templates for common Noir constructs
+- Macro expansion viewer
+- Comment toggling and bracket matching
 <!-- Plugin description end -->
+
+## Features
+
+### LSP Integration
+The plugin connects to `nargo lsp` to provide:
+- **Code Completion** - Context-aware suggestions
+- **Diagnostics** - Real-time error and warning highlighting
+- **Go to Definition** - Navigate to symbol definitions
+- **Hover Information** - Type info and documentation on hover
+- **Find References** - Find all usages of a symbol
+- **Signature Help** - Function parameter hints
+- **Code Actions** - Quick fixes and refactoring suggestions
+
+### Live Templates
+Type these prefixes and press Tab to expand:
+
+| Prefix | Expands to |
+|--------|------------|
+| `fn` | Function declaration |
+| `fnmain` | Main function |
+| `struct` | Struct declaration |
+| `let` | Variable declaration |
+| `for` | For loop |
+| `forin` | For-in loop |
+| `if` | If statement |
+| `elseif` | Else-if statement |
+| `else` | Else block |
+| `mod` | Module declaration |
+| `use` | Use statement |
+| `letfor` | Array comprehension |
+| `letforin` | Array comprehension with index |
+
+### Actions
+Available in **Tools → Noir** menu:
+- **Restart Language Server** - Restart the LSP connection
+- **Expand Macros** - Run `nargo expand` and view result in scratch file
+
+## Requirements
+
+- **JetBrains IDE** version 2023.2 or later (IntelliJ IDEA, CLion, RustRover, WebStorm, etc.)
+- **[Nargo](https://noir-lang.org/docs/getting_started/installation/)** installed for LSP features
 
 ## Installation
 
-- Using the IDE built-in plugin system:
+### From JetBrains Marketplace (Recommended)
+1. Open your JetBrains IDE
+2. Go to **Settings/Preferences → Plugins → Marketplace**
+3. Search for "Noir"
+4. Click **Install**
 
-  <kbd>Settings/Preferences</kbd> > <kbd>Plugins</kbd> > <kbd>Marketplace</kbd> > <kbd>Search for "JetBrains-Noir-Syntax-Highlight-Plugin"</kbd> >
-  <kbd>Install</kbd>
+### Manual Installation
+1. Download the latest release from [GitHub Releases](https://github.com/ohaddahan/JetBrains-Noir-Syntax-Highlight-Plugin/releases)
+2. Go to **Settings/Preferences → Plugins → ⚙️ → Install Plugin from Disk...**
+3. Select the downloaded `.zip` file
 
-- Using JetBrains Marketplace:
+## Configuration
 
-  Go to [JetBrains Marketplace](https://plugins.jetbrains.com/plugin/MARKETPLACE_ID) and install it by clicking the <kbd>Install to ...</kbd> button in case your IDE is running.
+### Settings Location
+**Settings/Preferences → Languages & Frameworks → Noir**
 
-  You can also download the [latest release](https://plugins.jetbrains.com/plugin/MARKETPLACE_ID/versions) from JetBrains Marketplace and install it manually using
-  <kbd>Settings/Preferences</kbd> > <kbd>Plugins</kbd> > <kbd>⚙️</kbd> > <kbd>Install plugin from disk...</kbd>
+### Available Settings
+| Setting | Description | Default |
+|---------|-------------|---------|
+| Nargo path | Path to nargo executable | Auto-detect from PATH |
+| Enable LSP | Enable/disable language server | Enabled |
+| Lightweight mode | Disable completions, signature help, code actions | Disabled |
 
-- Manually:
+### Project-Level Override
+You can override the nargo path per-project. Project settings take precedence over application settings.
 
-  Download the [latest release](https://github.com/ohaddahan/JetBrains-Noir-Syntax-Highlight-Plugin/releases/latest) and install it manually using
-  <kbd>Settings/Preferences</kbd> > <kbd>Plugins</kbd> > <kbd>⚙️</kbd> > <kbd>Install plugin from disk...</kbd>
+## Building from Source
 
+### Prerequisites
+- JDK 17 or later
+- Gradle 8.0+ (wrapper included)
+
+### Build Commands
+
+```bash
+# Build the plugin
+./gradlew buildPlugin
+
+# The plugin zip will be at:
+# build/distributions/JetBrains-Noir-Syntax-Highlight-Plugin-<version>.zip
+```
+
+### Testing Locally
+
+```bash
+# Run a sandbox IDE with the plugin installed
+./gradlew runIde
+
+# Run tests
+./gradlew test
+
+# Check compatibility with different IDE versions
+./gradlew verifyPlugin
+```
+
+### Development Workflow
+
+1. Clone the repository
+2. Open in IntelliJ IDEA (the IDE will recognize it as a Gradle project)
+3. Run `./gradlew runIde` to test changes in a sandbox environment
+4. Make changes and the sandbox IDE will reload automatically
+
+## Project Structure
+
+```
+src/main/
+├── kotlin/com/ohaddahan/noir/
+│   ├── NoirLanguage.kt          # Language definition
+│   ├── NoirFileType.kt          # File type for .nr files
+│   ├── NoirFile.kt              # PSI file for Noir
+│   ├── NoirLexer.kt             # Syntax highlighting lexer
+│   ├── NoirTokenTypes.kt        # Token element types
+│   ├── NoirParser.kt            # Simple pass-through parser
+│   ├── NoirParserDefinition.kt  # Parser definition
+│   ├── NoirPsiElement.kt        # Base PSI element
+│   ├── NoirSyntaxHighlighter.kt # Syntax highlighter
+│   ├── NoirSyntaxHighlighterFactory.kt
+│   ├── NoirIcons.kt             # Plugin icons
+│   ├── NoirCommenter.kt         # Comment toggling
+│   ├── NoirBraceMatcher.kt      # Bracket matching
+│   ├── NoirTemplateContextType.kt
+│   ├── lsp/
+│   │   ├── NoirLspServerDescriptor.kt
+│   │   └── NoirLspServerSupportProvider.kt
+│   ├── settings/
+│   │   ├── NoirSettings.kt
+│   │   ├── NoirProjectSettings.kt
+│   │   └── NoirSettingsConfigurable.kt
+│   └── actions/
+│       ├── RestartLspAction.kt
+│       └── ExpandMacrosAction.kt
+└── resources/
+    ├── META-INF/plugin.xml      # Plugin configuration
+    ├── liveTemplates/Noir.xml   # Live templates
+    └── icons/                   # SVG icons
+```
+
+## Troubleshooting
+
+### LSP not working
+1. Ensure `nargo` is installed and in your PATH
+2. Check **Settings → Languages & Frameworks → Noir** for the nargo path
+3. Try **Tools → Noir → Restart Language Server**
+4. Check the IDE log for errors: **Help → Show Log in Finder/Explorer**
+
+### No syntax highlighting
+1. Ensure you're using the latest version of the plugin
+2. Try reopening the `.nr` file
+3. Check that the file has the `.nr` extension
+
+## Contributing
+
+Contributions are welcome! Please see the [DEV.md](DEV.md) file for implementation details.
+
+## License
+
+MIT License - see [LICENSE](LICENSE) for details.
+
+## Links
+
+- [Noir Language](https://noir-lang.org/)
+- [Noir Documentation](https://noir-lang.org/docs/)
+- [Nargo Installation](https://noir-lang.org/docs/getting_started/installation/)
+- [JetBrains Plugin Development](https://plugins.jetbrains.com/docs/intellij/)
 
 ---
-Plugin based on the [IntelliJ Platform Plugin Template][template].
-
-[template]: https://github.com/JetBrains/intellij-platform-plugin-template
-[docs:plugin-description]: https://plugins.jetbrains.com/docs/intellij/plugin-user-experience.html#plugin-description-and-presentation
+Based on the [IntelliJ Platform Plugin Template](https://github.com/JetBrains/intellij-platform-plugin-template).
