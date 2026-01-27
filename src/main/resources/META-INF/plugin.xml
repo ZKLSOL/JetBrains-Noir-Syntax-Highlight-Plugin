@@ -1,7 +1,7 @@
 <idea-plugin>
     <id>cash.turbine.noir</id>
     <name>Noir Language Support</name>
-    <vendor url="https://github.com/ZKLSOL">ZKLSOL</vendor>
+    <vendor url="https://github.com/turbine-cash">ZKLSOL</vendor>
 
     <description><![CDATA[
     Syntax highlighting and language server support for the Noir zero-knowledge programming language.

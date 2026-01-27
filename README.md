@@ -1,6 +1,8 @@
+# [Extended Docs](noir-jetbrains-plugin-docs.turbine.cash)
+
 # Noir JetBrains Plugin
 
-![Build](https://github.com/ZKLSOL/JetBrains-Noir-Syntax-Highlight-Plugin/workflows/Build/badge.svg)
+![Build](https://github.com/turbine-cash/JetBrains-Noir-Syntax-Highlight-Plugin/workflows/Build/badge.svg)
 
 Language support for the [Noir](https://noir-lang.org/) zero-knowledge programming language in JetBrains IDEs.
 
@@ -81,7 +83,7 @@ Available in **Tools → Noir** menu:
 4. Click **Install**
 
 ### Manual Installation
-1. Download the latest release from [GitHub Releases](https://github.com/ZKLSOL/JetBrains-Noir-Syntax-Highlight-Plugin/releases)
+1. Download the latest release from [GitHub Releases](https://github.com/turbine-cash/JetBrains-Noir-Syntax-Highlight-Plugin/releases)
 2. Go to **Settings/Preferences → Plugins → ⚙️ → Install Plugin from Disk...**
 3. Select the downloaded `.zip` file
 
